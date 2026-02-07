@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOFI SUPPLY</title>
+<style>
+:root {
+  --neon: #00ff88;
+  --bg: #050505;
+  --card: #111;
+  --text: #eee;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 0;
+}
+header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #222;
+  width: 100%;
+  max-width: 700px;
+  padding-bottom: 20px;
+}
+h1 { color: var(--neon); letter-spacing: 5px; text-transform: uppercase; margin: 10px 0; font-size: 1.8rem; }
+.vault-container { width: 100%; max-width: 500px; }
+.track-card { background: var(--card); border: 1px solid #222; padding: 15px; margin-bottom: 20px; border-left: 4px solid var(--neon); }
+.track-title { font-weight: bold; font-size: 1rem; color: #fff; display: block; margin-bottom: 10px; text-transform: uppercase; }
+audio { width: 100%; margin: 5px 0; }
+.button-group { display: flex; gap: 8px; margin-top: 12px; }
+.buy-btn { flex: 1; padding: 10px; border: none; border-radius: 2px; cursor: pointer; font-weight: bold; text-align: center; text-decoration: none; font-size: 0.75rem; transition: 0.2s; text-transform: uppercase; }
+.commercial { background: var(--neon); color: #000; }
+.exclusive { background: #ff0055; color: #fff; }
+.buy-btn:hover { filter: brightness(1.2); }
+footer { margin-top: 40px; color: #333; font-size: 0.7rem; letter-spacing: 2px; }
+a { text-decoration: none; }
+body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+body { -webkit-touch-callout: none; }
+</style>
+</head>
+<body oncontextmenu="return false;">
+
+<header>
+<h1>LOFI SUPPLY</h1>
+<p>14 HIGH-FIDELITY WAV TRACKS</p>
+</header>
+
+<div class="vault-container">
+<script>
+const tracks = [
+  "song1.wav","song2.wav","song3.wav","song4.wav",
+  "song5.wav","song6.wav","song7.wav","song8.wav",
+  "song9.wav","song10.wav","song11.wav","song12.wav",
+  "song13.wav","song14.wav"
+];
+
+const container = document.querySelector('.vault-container');
+
+tracks.forEach((track, index) => {
+  const num = (index + 1).toString().padStart(2,'0');
+  const html = `
+    <div class="track-card">
+      <span class="track-title">${num}. ${track}</span>
+      <audio controls src="${track}"></audio>
+      <div class="button-group">
+        <a href="#" class="buy-btn commercial">COMMERCIAL LICENSE $20</a>
+        <a href="#" class="buy-btn exclusive">EXCLUSIVE LICENSE $50</a>
+      </div>
+    </div>
+  `;
+  container.innerHTML += html;
+});
+</script>
+</div>
+
+<footer>
+<p>Contact: <a href="mailto:jbirdslofisupply@gmail.com">jbirdslofisupply@gmail.com</a></p>
+<p>All sales are final. No copyright infringement intended.</p>
+&copy; 2026 LOFI SUPPLY
+</footer>
+
+</body>
+</html>
