@@ -33,14 +33,15 @@ h1 { color: var(--neon); letter-spacing: 5px; text-transform: uppercase; margin:
 .vault-container { width: 100%; max-width: 500px; }
 .track-card { background: var(--card); border: 1px solid #222; padding: 15px; margin-bottom: 20px; border-left: 4px solid var(--neon); }
 .track-title { font-weight: bold; font-size: 1rem; color: #fff; display: block; margin-bottom: 10px; text-transform: uppercase; }
-audio { width: 100%; margin: 5px 0; }
+audio { width: 100%; margin: 5px 0; pointer-events: auto; }
 .button-group { display: flex; gap: 8px; margin-top: 12px; }
 .buy-btn { flex: 1; padding: 10px; border: none; border-radius: 2px; cursor: pointer; font-weight: bold; text-align: center; text-decoration: none; font-size: 0.75rem; transition: 0.2s; text-transform: uppercase; }
 .commercial { background: var(--neon); color: #000; }
 .exclusive { background: #ff0055; color: #fff; }
 .buy-btn:hover { filter: brightness(1.2); }
+section { max-width: 700px; background: #111; padding: 15px; margin: 20px 0; border-left: 4px solid var(--neon); }
 footer { margin-top: 40px; color: #333; font-size: 0.7rem; letter-spacing: 2px; }
-a { text-decoration: none; }
+a { text-decoration: none; color: var(--neon); }
 body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 body { -webkit-touch-callout: none; }
 </style>
@@ -70,8 +71,8 @@ tracks.forEach((track, index) => {
       <span class="track-title">${num}. ${track}</span>
       <audio controls src="${track}"></audio>
       <div class="button-group">
-        <a href="#" class="buy-btn commercial">COMMERCIAL LICENSE $20</a>
-        <a href="#" class="buy-btn exclusive">EXCLUSIVE LICENSE $50</a>
+        <a href="#" class="buy-btn commercial" onclick="alert('Contact us for commercial license')">COMMERCIAL $20</a>
+        <a href="#" class="buy-btn exclusive" onclick="alert('Contact us for exclusive license')">EXCLUSIVE $50</a>
       </div>
     </div>
   `;
@@ -80,9 +81,20 @@ tracks.forEach((track, index) => {
 </script>
 </div>
 
-<footer>
-<p>Contact: <a href="mailto:jbirdslofisupply@gmail.com">jbirdslofisupply@gmail.com</a></p>
+<section>
+<h2>Licensing Info</h2>
+<p><strong>Commercial License ($20)</strong>: Use one track for commercial projects. Contact us for details.</p>
+<p><strong>Exclusive License ($50)</strong>: Get full exclusive rights to the track. Contact us for details.</p>
 <p>All sales are final. No copyright infringement intended.</p>
+</section>
+
+<section>
+<h2>Contact</h2>
+<p>Email: <a href="mailto:jbirdslofisupply@gmail.com">jbirdslofisupply@gmail.com</a></p>
+<p>Please reach out for licensing inquiries.</p>
+</section>
+
+<footer>
 &copy; 2026 LOFI SUPPLY
 </footer>
 
