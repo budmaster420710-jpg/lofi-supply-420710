@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lofi Supply</title>
+<title>Lofi Supply - Tracks</title>
 <script src="https://www.paypal.com/sdk/js?client-id=AQnmb8EvyKXnVd1zAyJOQFBs9mULlocD7oL176NoeTNHBETpTR4x3vL9ldSgaLlewn31Xm_fZJRKJIQM"></script>
 <style>
   body {
@@ -12,12 +12,24 @@
     color: #0f0;
     padding: 20px;
   }
+
+  h1, h2, h3 {
+    text-shadow: 0 0 10px #0f0;
+  }
+
   h1 {
     text-align: center;
-    margin-bottom: 40px;
-    text-shadow: 0 0 15px #0f0;
+    margin-bottom: 30px;
     animation: neonPulse 2s infinite alternate;
   }
+
+  .section-title {
+    margin-top: 40px;
+    font-size: 1.5em;
+    text-align: center;
+    animation: neonPulse 2s infinite alternate;
+  }
+
   .song {
     margin-bottom: 50px;
     padding: 20px;
@@ -26,35 +38,50 @@
     border-radius: 10px;
     box-shadow: 0 0 10px #0f0 inset;
   }
+
   .song h2 {
+    margin-bottom: 10px;
     text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0;
     animation: neonPulse 1.5s infinite alternate;
   }
+
   audio {
     width: 100%;
-    margin-top: 10px;
+    margin-bottom: 15px;
     outline: none;
   }
+
   .paypal-buttons {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
+    gap: 10px;
   }
+
   .license-label {
     font-size: 0.9em;
     color: #0f0;
     text-shadow: 0 0 5px #0f0;
-    margin-bottom: 5px;
   }
+
   .paypal-buttons iframe {
     border-radius: 8px;
     transition: transform 0.2s, box-shadow 0.2s;
     animation: pulseButton 2s infinite alternate;
   }
+
   .paypal-buttons iframe:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px #0f0, 0 0 40px #0f0;
+  }
+
+  .about-contact {
+    margin-top: 50px;
+    padding: 20px;
+    background: #111;
+    border: 1px solid #0f0;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px #0f0 inset;
   }
 
   @keyframes neonPulse {
@@ -72,7 +99,17 @@
 
 <h1>Lofi Supply - Tracks</h1>
 
+<div class="about-contact">
+  <h3>About / Licensing</h3>
+  <p>All tracks available for Commercial ($20) and Exclusive ($50) licenses. Each license includes a non-downloadable streaming player on this page. For more info, contact us below.</p>
+</div>
+
 <div id="songs-container"></div>
+
+<div class="about-contact">
+  <h3>Contact Us</h3>
+  <p>Email: <a href="mailto:jbirdslofisupply@gmail.com" style="color:#0f0;">jbirdslofisupply@gmail.com</a></p>
+</div>
 
 <script>
 const songs = [
@@ -92,10 +129,11 @@ songs.forEach((file, index) => {
   title.textContent = file.replace('.wav','').replace(/_/g,' ');
   songDiv.appendChild(title);
 
-  // Audio player
+  // Audio player with no download
   const player = document.createElement('audio');
   player.controls = true;
   player.src = file;
+  player.setAttribute('controlsList','nodownload'); // disables download button
   songDiv.appendChild(player);
 
   // PayPal buttons container
