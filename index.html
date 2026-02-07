@@ -6,37 +6,56 @@
 <title>Lofi Supply - Tracks</title>
 <script src="https://www.paypal.com/sdk/js?client-id=AQnmb8EvyKXnVd1zAyJOQFBs9mULlocD7oL176NoeTNHBETpTR4x3vL9ldSgaLlewn31Xm_fZJRKJIQM"></script>
 <style>
+  /* Basic page styling */
   body {
     font-family: 'Courier New', monospace;
-    background: #0a0a0a;
+    background: linear-gradient(135deg, #000000, #111111, #0a0a0a);
     color: #0f0;
     padding: 20px;
   }
 
   h1, h2, h3 {
-    text-shadow: 0 0 10px #0f0;
+    text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
   }
 
   h1 {
     text-align: center;
     margin-bottom: 30px;
     animation: neonPulse 2s infinite alternate;
+    font-size: 3em;
   }
 
   .section-title {
-    margin-top: 40px;
+    margin-top: 30px;
     font-size: 1.5em;
     text-align: center;
     animation: neonPulse 2s infinite alternate;
   }
 
-  .song {
-    margin-bottom: 50px;
+  /* Song groups styling */
+  .song-group {
+    margin-top: 30px;
     padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #0f0;
+    box-shadow: 0 0 20px #0f0 inset;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  /* Individual song card */
+  .song {
+    margin-bottom: 40px;
+    padding: 15px;
     background: #111;
     border: 1px solid #0f0;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0 0 10px #0f0 inset;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .song:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px #0f0 inset, 0 0 35px #0f0;
   }
 
   .song h2 {
@@ -74,16 +93,27 @@
     box-shadow: 0 0 20px #0f0, 0 0 40px #0f0;
   }
 
+  /* About/Contact section */
   .about-contact {
     margin-top: 50px;
     padding: 20px;
     background: #111;
     border: 1px solid #0f0;
-    border-radius: 10px;
+    border-radius: 12px;
     text-align: center;
     box-shadow: 0 0 10px #0f0 inset;
   }
 
+  a {
+    color: #0f0;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Animations */
   @keyframes neonPulse {
     0% { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0; }
     100% { text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 40px #0f0; }
@@ -101,14 +131,14 @@
 
 <div class="about-contact">
   <h3>About / Licensing</h3>
-  <p>All tracks available for Commercial ($20) and Exclusive ($50) licenses. Each license includes a non-downloadable streaming player on this page. For more info, contact us below.</p>
+  <p>All tracks available for <strong>Commercial ($20)</strong> and <strong>Exclusive ($50)</strong> licenses. Streaming only, no downloads. For inquiries, contact below.</p>
 </div>
 
 <div id="songs-container"></div>
 
 <div class="about-contact">
   <h3>Contact Us</h3>
-  <p>Email: <a href="mailto:jbirdslofisupply@gmail.com" style="color:#0f0;">jbirdslofisupply@gmail.com</a></p>
+  <p>Email: <a href="mailto:jbirdslofisupply@gmail.com">jbirdslofisupply@gmail.com</a></p>
 </div>
 
 <script>
@@ -120,70 +150,82 @@ const songs = [
 
 const container = document.getElementById('songs-container');
 
-songs.forEach((file, index) => {
-  const songDiv = document.createElement('div');
-  songDiv.className = 'song';
+// Split into two groups
+const group1 = songs.slice(0,7);
+const group2 = songs.slice(7);
+const groups = [group1, group2];
 
-  // Song title
-  const title = document.createElement('h2');
-  title.textContent = file.replace('.wav','').replace(/_/g,' ');
-  songDiv.appendChild(title);
+groups.forEach((group, groupIndex) => {
+  const groupDiv = document.createElement('div');
+  groupDiv.className = 'song-group';
+  
+  const groupTitle = document.createElement('h3');
+  groupTitle.className = 'section-title';
+  groupTitle.textContent = `Tracks ${groupIndex*7+1} - ${groupIndex*7 + group.length}`;
+  groupDiv.appendChild(groupTitle);
 
-  // Audio player with no download
-  const player = document.createElement('audio');
-  player.controls = true;
-  player.src = file;
-  player.setAttribute('controlsList','nodownload'); // disables download button
-  songDiv.appendChild(player);
+  group.forEach((file, index) => {
+    const songDiv = document.createElement('div');
+    songDiv.className = 'song';
 
-  // PayPal buttons container
-  const buttonsDiv = document.createElement('div');
-  buttonsDiv.className = 'paypal-buttons';
+    const title = document.createElement('h2');
+    title.textContent = file.replace('.wav','').replace(/_/g,' ');
+    songDiv.appendChild(title);
 
-  // Commercial License $20
-  const commercialLabel = document.createElement('div');
-  commercialLabel.className = 'license-label';
-  commercialLabel.textContent = 'Commercial License - $20';
-  buttonsDiv.appendChild(commercialLabel);
+    const player = document.createElement('audio');
+    player.controls = true;
+    player.src = file;
+    player.setAttribute('controlsList','nodownload');
+    songDiv.appendChild(player);
 
-  const commercialDiv = document.createElement('div');
-  commercialDiv.id = `paypal-commercial-${index}`;
-  buttonsDiv.appendChild(commercialDiv);
+    const buttonsDiv = document.createElement('div');
+    buttonsDiv.className = 'paypal-buttons';
 
-  // Exclusive License $50
-  const exclusiveLabel = document.createElement('div');
-  exclusiveLabel.className = 'license-label';
-  exclusiveLabel.textContent = 'Exclusive License - $50';
-  buttonsDiv.appendChild(exclusiveLabel);
+    const commercialLabel = document.createElement('div');
+    commercialLabel.className = 'license-label';
+    commercialLabel.textContent = 'Commercial License - $20';
+    buttonsDiv.appendChild(commercialLabel);
 
-  const exclusiveDiv = document.createElement('div');
-  exclusiveDiv.id = `paypal-exclusive-${index}`;
-  buttonsDiv.appendChild(exclusiveDiv);
+    const commercialDiv = document.createElement('div');
+    commercialDiv.id = `paypal-commercial-${groupIndex}-${index}`;
+    buttonsDiv.appendChild(commercialDiv);
 
-  songDiv.appendChild(buttonsDiv);
-  container.appendChild(songDiv);
+    const exclusiveLabel = document.createElement('div');
+    exclusiveLabel.className = 'license-label';
+    exclusiveLabel.textContent = 'Exclusive License - $50';
+    buttonsDiv.appendChild(exclusiveLabel);
 
-  // Render $20 Commercial PayPal button
-  paypal.Buttons({
-    style: { layout: 'vertical', color: 'black', shape: 'rect', label: 'buynow' },
-    createOrder: (data, actions) => actions.order.create({
-      purchase_units: [{ description: `${title.textContent} - Commercial License`, amount: { value: '20.00' } }]
-    }),
-    onApprove: (data, actions) => actions.order.capture().then(() => {
-      alert(`Thank you for purchasing the Commercial License ($20) of ${title.textContent}!`);
-    })
-  }).render(`#paypal-commercial-${index}`);
+    const exclusiveDiv = document.createElement('div');
+    exclusiveDiv.id = `paypal-exclusive-${groupIndex}-${index}`;
+    buttonsDiv.appendChild(exclusiveDiv);
 
-  // Render $50 Exclusive PayPal button
-  paypal.Buttons({
-    style: { layout: 'vertical', color: 'black', shape: 'rect', label: 'buynow' },
-    createOrder: (data, actions) => actions.order.create({
-      purchase_units: [{ description: `${title.textContent} - Exclusive License`, amount: { value: '50.00' } }]
-    }),
-    onApprove: (data, actions) => actions.order.capture().then(() => {
-      alert(`Thank you for purchasing the Exclusive License ($50) of ${title.textContent}!`);
-    })
-  }).render(`#paypal-exclusive-${index}`);
+    songDiv.appendChild(buttonsDiv);
+    groupDiv.appendChild(songDiv);
+
+    // Commercial $20 PayPal button
+    paypal.Buttons({
+      style: { layout: 'vertical', color: 'black', shape: 'rect', label: 'buynow' },
+      createOrder: (data, actions) => actions.order.create({
+        purchase_units: [{ description: `${title.textContent} - Commercial License`, amount: { value: '20.00' } }]
+      }),
+      onApprove: (data, actions) => actions.order.capture().then(() => {
+        alert(`Thank you for purchasing the Commercial License ($20) of ${title.textContent}!`);
+      })
+    }).render(`#paypal-commercial-${groupIndex}-${index}`);
+
+    // Exclusive $50 PayPal button
+    paypal.Buttons({
+      style: { layout: 'vertical', color: 'black', shape: 'rect', label: 'buynow' },
+      createOrder: (data, actions) => actions.order.create({
+        purchase_units: [{ description: `${title.textContent} - Exclusive License`, amount: { value: '50.00' } }]
+      }),
+      onApprove: (data, actions) => actions.order.capture().then(() => {
+        alert(`Thank you for purchasing the Exclusive License ($50) of ${title.textContent}!`);
+      })
+    }).render(`#paypal-exclusive-${groupIndex}-${index}`);
+  });
+
+  container.appendChild(groupDiv);
 });
 </script>
 
