@@ -121,84 +121,9 @@
     </div>
 
     <div class="section-header">[02] LICENSE_AGREEMENT</div>
-    <div class="license-box" id="licenseBox">
+    <div class="license-box">
         <h3>BANDLAB-NON-EXCLUSIVE_V4</h3>
         <p><strong>1. TERM:</strong> 10-year fixed term from date of purchase.</p>
         <p><strong>2. USAGE:</strong> Worldwide, royalty-free license to use, modify, and synchronize the Track in a "New Work" (song).</p>
-        <p><strong>3. LIMITS:</strong> Up to 10,000,000 streams (Spotify, Apple Music, YouTube).</p>
-        <p><strong>4. EXCLUSIVE OPTION:</strong> If Exclusive is selected, all Master Rights transfer to Licensee in perpetuity. Licensor ceases all future sales of this Track.</p>
-        <p><strong>5. CREDIT:</strong> Licensee must provide credit to the Producer as "Produced by [Producer Name]".</p>
-        <p><strong>6. RESTRICTIONS:</strong> Licensee may not resell the Track as a standalone asset.</p>
-        <p>--------------------------------------------------</p>
-        <p>BY CHECKING THE BOX BELOW, YOU DIGITALLY SIGN THIS BINDING CONTRACT.</p>
-        <p>[SCROLL TO BOTTOM TO UNLOCK SIGNATURE]</p>
-    </div>
-
-    <div class="gatekeeper">
-        <input type="checkbox" id="agreeCheck" disabled onchange="togglePaypal()">
-        <label for="agreeCheck">> I HAVE READ AND AGREE TO THE TERMS</label>
-        
-        <div id="paypalGate" class="paypal-lock">
-            <div id="paypal-button-container"></div>
-        </div>
-    </div>
-
-    <div id="status-feed">> AWAITING_SYSTEM_INPUT...</div>
-</div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
-<script>
-    "use strict";
-
-    // DEBUGGED & VERIFIED THRICE [X] [X] [X]
-
-    const lbox = document.getElementById('licenseBox');
-    const check = document.getElementById('agreeCheck');
-    const feed = document.getElementById('status-feed');
-
-    // BandLab-Style Scroll Requirement
-    lbox.onscroll = function() {
-        if (lbox.scrollHeight - lbox.scrollTop <= lbox.clientHeight + 5) {
-            check.disabled = false;
-            updateLog("SIGNATURE_FIELD_UNLOCKED");
-        }
-    };
-
-    function updateLog(msg) {
-        feed.innerText = "> " + msg;
-    }
-
-    function togglePaypal() {
-        const gate = document.getElementById('paypalGate');
-        if (check.checked) {
-            gate.classList.add('active');
-            updateLog("GATEWAY_ACTIVE: AWAITING_PAYMENT");
-            renderPaypal();
-        } else {
-            gate.classList.remove('active');
-        }
-    }
-
-    function renderPaypal() {
-        document.getElementById('paypal-button-container').innerHTML = '';
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: { value: '29.99' },
-                        description: 'Track License Agreement'
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    updateLog("TRANSACTION_COMPLETE: ACCESS_GRANTED");
-                    alert('Payment Successful. License Signed.');
-                });
-            }
-        }).render('#paypal-button-container');
-    }
-</script>
-
-</body>
-</html>
+        <p><strong>3. LIMITS:</strong> Up to 10,000,000 streams (Spotify, Apple Music, YouTube) and unlimited non-monetized streams.</p>
+        <p><strong>
