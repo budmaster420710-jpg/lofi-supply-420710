@@ -17,18 +17,17 @@
         h1 { font-size: 1.5em; animation: spectrum 4s infinite alternate; letter-spacing: 4px; text-align: center; margin-bottom: 10px; }
         .info-panel { width: 100%; max-width: 750px; border: 2px solid; padding: 15px; text-align: center; margin-bottom: 30px; animation: spectrum 5s infinite; }
         .song-card { width: 100%; max-width: 750px; background: #080808; border: 1px solid; padding: 20px; margin-bottom: 40px; animation: spectrum 6s infinite alternate; }
-        
-        /* SECURITY: Hide download and force hacker theme */
         audio { width: 100%; filter: invert(1) hue-rotate(180deg); margin: 15px 0; }
-        audio::-webkit-media-controls-download-button { display:none; }
-        audio::-webkit-media-controls-enclosure { overflow:hidden; }
-
-        .pay-box { border: 2px solid; padding: 15px; margin-top: 15px; background: #000; animation: spectrum 4s infinite alternate; }
+        
+        .pay-box { border: 2px solid; padding: 15px; margin-top: 15px; background: #000; animation: spectrum 4s infinite alternate; position: relative; }
         .label { font-size: 0.8em; color: #fff; margin-bottom: 10px; display: block; font-weight: bold; }
 
-        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; padding: 20px; border: 4px solid; animation: spectrum 2s infinite; }
-        .contract { background: #111; color: #fff; padding: 20px; height: 60vh; overflow-y: scroll; border: 1px solid #0ff; margin-bottom: 15px; white-space: pre-wrap; }
-        .btn-close { background: #0ff; color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; }
+        .gate-trigger { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 999; cursor: pointer; background: rgba(0,0,0,0.01); }
+
+        #license-gate { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 10000; padding: 20px; border: 4px solid; animation: spectrum 2s infinite; }
+        .gate-content { max-width: 700px; margin: 2vh auto; color: #fff; }
+        .jargon-box { background: #111; border: 1px solid #0f0; padding: 15px; margin-bottom: 15px; height: 180px; overflow-y: scroll; font-size: 0.75em; white-space: pre-wrap; line-height: 1.4; color: #0f0; }
+        .accept-btn { background: #0ff; color: #000; border: none; padding: 20px; width: 100%; font-weight: bold; cursor: pointer; letter-spacing: 2px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -36,116 +35,81 @@
     <h1>>> LO-FI SUPPLY <<</h1>
 
     <div class="info-panel">
-        <p>✓ NO COPYRIGHT STRIKES GUARANTEED</p>
-        <p>100% ROYALTY-FREE // NO DOWNLOAD PERMITTED WITHOUT PURCHASE</p>
+        <p>✓ ZERO ROYALTY FEES // NO COPYRIGHT STRIKES</p>
+        <p>LICENSE ACCEPTANCE REQUIRED FOR PURCHASE</p>
     </div>
 
-    <div class="song-card"><h2>TRACK_1</h2><audio controls controlsList="nodownload"><source src="song1.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p1c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p1e"></div></div>
+    <div class="song-card">
+        <h2>TRACK_1</h2>
+        <audio controls controlsList="nodownload"><source src="song1.wav"></audio>
+        <div class="pay-box">
+            <div class="gate-trigger" onclick="openGate()"></div>
+            <span class="label">COMMERCIAL USE - 10 YEAR LICENSE ($20)</span>
+            <div id="p1c"></div>
+        </div>
+        <div class="pay-box">
+            <div class="gate-trigger" onclick="openGate()"></div>
+            <span class="label">EXCLUSIVE - LIFETIME OWNERSHIP ($50)</span>
+            <div id="p1e"></div>
+        </div>
     </div>
 
-    <div class="song-card"><h2>TRACK_2</h2><audio controls controlsList="nodownload"><source src="song2.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p2c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p2e"></div></div>
-    </div>
+    <div id="license-gate">
+        <div class="gate-content">
+            <h2 style="color:#0f0; text-align:center;">OFFICIAL_LEGAL_CONTRACT</h2>
+            
+            <p style="color:#0ff; font-weight:bold;">1. COMMERCIAL LICENSE (10-YEAR TERM):</p>
+            <div class="jargon-box">
+- Valid for 10 YEARS from date of purchase.
+- 100% Royalty-Free. Keep all earnings.
+- Guaranteed NO COPYRIGHT STRIKES on all digital platforms.
+- Synchronization rights for social media and content creation.
+- No additional fees for the duration of the term.
+            </div>
 
-    <div class="song-card"><h2>TRACK_3</h2><audio controls controlsList="nodownload"><source src="song3.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p3c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p3e"></div></div>
-    </div>
+            <p style="color:#0ff; font-weight:bold;">2. EXCLUSIVE LICENSE (LIFETIME OWNERSHIP):</p>
+            <div class="jargon-box">
+- LIFETIME USAGE for all commercial and personal applications.
+- Full ownership buyout. The track is yours permanently.
+- ZERO Royalty Fees. ZERO Copyright Strikes.
+- Track is retired from the store inventory immediately.
+- Unlimited streaming, broadcast, and synchronization rights.
+            </div>
 
-    <div class="song-card"><h2>TRACK_4</h2><audio controls controlsList="nodownload"><source src="song4.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p4c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p4e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_5</h2><audio controls controlsList="nodownload"><source src="song5.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p5c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p5e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_6</h2><audio controls controlsList="nodownload"><source src="song6.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p6c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p6e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_7</h2><audio controls controlsList="nodownload"><source src="song7.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p7c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p7e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_8</h2><audio controls controlsList="nodownload"><source src="song8.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p8c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p8e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_9</h2><audio controls controlsList="nodownload"><source src="song9.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p9c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p9e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_10</h2><audio controls controlsList="nodownload"><source src="song10.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p10c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p10e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_11</h2><audio controls controlsList="nodownload"><source src="song11.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p11c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p11e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_12</h2><audio controls controlsList="nodownload"><source src="song12.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p12c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p12e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_13</h2><audio controls controlsList="nodownload"><source src="song13.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p13c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p13e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_14</h2><audio controls controlsList="nodownload"><source src="song14.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p14c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p14e"></div></div>
-    </div>
-
-    <div class="song-card"><h2>TRACK_15</h2><audio controls controlsList="nodownload"><source src="song15.wav"></audio>
-        <div class="pay-box"><span class="label">COMMERCIAL ($20)</span><div id="p15c"></div></div>
-        <div class="pay-box"><span class="label">EXCLUSIVE ($50)</span><div id="p15e"></div></div>
-    </div>
-
-    <div id="overlay">
-        <h2>DIGITAL_CONTRACT</h2>
-        <div id="contract-body" class="contract"></div>
-        <input type="text" id="signer" placeholder="TYPE NAME" style="width:100%; padding:10px; background:#000; color:#0f0; border:1px solid #0f0; margin-bottom:10px;">
-        <button class="btn-close" onclick="document.getElementById('overlay').style.display='none'">SIGN & FINISH</button>
+            <button class="accept-btn" onclick="acceptTerms()">I ACCEPT ALL TERMS - PROCEED TO PURCHASE</button>
+        </div>
     </div>
 
     <script>
-        function openLic(tier) {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('contract-body').innerText = "Lo-Fi Supply warrants NO COPYRIGHT STRIKES. Your Royalty-Free license for this track is now active.";
+        let termsAccepted = false;
+
+        function openGate() {
+            if (!termsAccepted) {
+                document.getElementById('license-gate').style.display = 'block';
+            }
         }
 
-        function setup(id, amt, tier) {
+        function acceptTerms() {
+            termsAccepted = true;
+            document.getElementById('license-gate').style.display = 'none';
+            const triggers = document.querySelectorAll('.gate-trigger');
+            triggers.forEach(t => t.style.display = 'none');
+        }
+
+        function setup(id, amt) {
             paypal.Buttons({
-                style: { height: 35, color: (amt === '20.00' ? 'black' : 'blue') },
-                createOrder: (data, actions) => actions.order.create({ purchase_units: [{ amount: { value: amt } }] }),
-                onApprove: (data, actions) => actions.order.capture().then(() => openLic(tier))
+                style: { height: 35, color: (amt === '20.00' ? 'black' : 'blue'), shape: 'rect' },
+                createOrder: (d, a) => a.order.create({ purchase_units: [{ amount: { value: amt } }] })
             }).render(id);
         }
 
         window.onload = function() {
             for(let i=1; i<=15; i++) {
-                setup('#p' + i + 'c', '20.00', 'C');
-                setup('#p' + i + 'e', '50.00', 'E');
+                if(document.querySelector('#p'+i+'c')) setup('#p' + i + 'c', '20.00');
+                if(document.querySelector('#p'+i+'e')) setup('#p' + i + 'e', '50.00');
             }
+            document.addEventListener('contextmenu', e => e.preventDefault());
         };
-
-        // KILLS DOWNLOAD ATTEMPTS
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83))) return false; };
     </script>
 </body>
 </html>
