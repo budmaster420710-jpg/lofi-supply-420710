@@ -6,7 +6,6 @@
     <title>LO-FI SUPPLY // SECURE_VAULT</title>
     <script src="https://www.paypal.com/sdk/js?client-id=AQnmb8EvyKXnVd1zAyJOQFBs9mULlocD7oL176NoeTNHBETpTR4x3vL9ldSgaLlewn31Xm_fZJRKJIQM&currency=USD"></script>
     <style>
-        /* Chromatic Hacker Animation */
         @keyframes spectrum {
             0% { color: #0f0; border-color: #0f0; text-shadow: 0 0 10px #0f0; box-shadow: 0 0 15px #0f0; }
             33% { color: #0ff; border-color: #0ff; text-shadow: 0 0 10px #0ff; box-shadow: 0 0 15px #0ff; }
@@ -15,16 +14,12 @@
         }
         * { user-select: none; box-sizing: border-box; -webkit-user-drag: none; }
         body { background: #000; color: #0f0; font-family: 'Courier New', monospace; margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; }
-        
         h1 { font-size: 1.5em; animation: spectrum 4s infinite alternate; letter-spacing: 3px; margin: 20px 0; text-align: center; }
         .terminal-header { width: 100%; max-width: 750px; border: 2px solid; padding: 15px; text-align: center; margin-bottom: 30px; animation: spectrum 5s infinite; }
-        
         .song-card { width: 100%; max-width: 750px; background: #050505; border: 1px solid; padding: 20px; margin-bottom: 40px; animation: spectrum 6s infinite alternate; }
         audio { width: 100%; filter: invert(1) hue-rotate(180deg); margin: 15px 0; }
-
         .pay-module { border: 2px solid; padding: 15px; margin-top: 15px; background: #000; animation: spectrum 4s infinite alternate; }
         .price-label { font-size: 0.8em; color: #fff; margin-bottom: 10px; display: block; font-weight: bold; }
-
         #contract-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; padding: 20px; border: 4px solid; animation: spectrum 2s infinite; }
         .contract-window { background: #0a0a0a; color: #fff; padding: 20px; height: 60vh; overflow-y: scroll; border: 1px solid #0ff; margin-bottom: 15px; white-space: pre-wrap; font-size: 0.85em; }
         .input-line { width: 100%; padding: 15px; background: #000; color: #0f0; border: 1px solid #0f0; margin-bottom: 10px; font-family: monospace; }
@@ -41,63 +36,96 @@
         <p>100% ROYALTY-FREE // LICENSING ACTIVE</p>
     </div>
 
-    <div class="song-card">
-        <h2>TRACK_1</h2>
-        <audio controls controlsList="nodownload"><source src="song1.wav" type="audio/wav"></audio>
-        <div class="pay-module"><span class="price-label">COMMERCIAL LICENSE ($20)</span><div id="p1c"></div></div>
-        <div class="pay-module"><span class="price-label">EXCLUSIVE OWNERSHIP ($50)</span><div id="p1e"></div></div>
+    <div class="song-card"><h2>TRACK_1</h2><audio controls><source src="song1.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p1c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p1e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_2</h2><audio controls><source src="song2.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p2c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p2e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_3</h2><audio controls><source src="song3.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p3c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p3e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_4</h2><audio controls><source src="song4.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p4c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p4e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_5</h2><audio controls><source src="song5.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p5c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p5e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_6</h2><audio controls><source src="song6.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p6c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p6e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_7</h2><audio controls><source src="song7.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p7c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p7e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_8</h2><audio controls><source src="song8.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p8c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p8e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_9</h2><audio controls><source src="song9.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p9c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p9e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_10</h2><audio controls><source src="song10.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p10c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p10e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_11</h2><audio controls><source src="song11.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p11c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p11e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_12</h2><audio controls><source src="song12.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p12c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p12e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_13</h2><audio controls><source src="song13.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p13c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p13e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_14</h2><audio controls><source src="song14.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p14c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p14e"></div></div>
+    </div>
+    <div class="song-card"><h2>TRACK_15</h2><audio controls><source src="song15.wav" type="audio/wav"></audio>
+        <div class="pay-module"><span class="price-label">COMMERCIAL ($20)</span><div id="p15c"></div></div>
+        <div class="pay-module"><span class="price-label">EXCLUSIVE ($50)</span><div id="p15e"></div></div>
     </div>
 
-    <div class="song-card">
-        <h2>TRACK_2</h2>
-        <audio controls controlsList="nodownload"><source src="song2.wav" type="audio/wav"></audio>
-        <div class="pay-module"><span class="price-label">COMMERCIAL LICENSE ($20)</span><div id="p2c"></div></div>
-        <div class="pay-module"><span class="price-label">EXCLUSIVE OWNERSHIP ($50)</span><div id="p2e"></div></div>
+    <div id="contract-overlay">
+        <h2 style="text-align:center;">DIGITAL_CONTRACT</h2>
+        <div class="contract-window" id="contract-text"></div>
+        <input type="text" id="signer-input" class="input-line" placeholder="FULL NAME">
+        <button class="execute-btn" onclick="document.getElementById('contract-overlay').style.display='none'">SIGN</button>
     </div>
 
-    <div class="song-card">
-        <h2>TRACK_3</h2>
-        <audio controls controlsList="nodownload"><source src="song3.wav" type="audio/wav"></audio>
-        <div class="pay-module"><span class="price-label">COMMERCIAL LICENSE ($20)</span><div id="p3c"></div></div>
-        <div class="pay-module"><span class="price-label">EXCLUSIVE OWNERSHIP ($50)</span><div id="p3e"></div></div>
-    </div>
+    <script>
+        function openLicense(tier) {
+            document.getElementById('contract-overlay').style.display = 'block';
+            document.getElementById('contract-text').innerText = "NO COPYRIGHT STRIKES GUARANTEED. Royalty-Free active.";
+        }
 
-    <div class="song-card">
-        <h2>TRACK_4</h2>
-        <audio controls controlsList="nodownload"><source src="song4.wav" type="audio/wav"></audio>
-        <div class="pay-module"><span class="price-label">COMMERCIAL LICENSE ($20)</span><div id="p4c"></div></div>
-        <div class="pay-module"><span class="price-label">EXCLUSIVE OWNERSHIP ($50)</span><div id="p4e"></div></div>
-    </div>
+        function renderBtn(target, val, tier) {
+            if(document.querySelector(target)) {
+                paypal.Buttons({
+                    style: { height: 35, color: (val === '20.00' ? 'black' : 'blue') },
+                    createOrder: (d, a) => a.order.create({ purchase_units: [{ amount: { value: val } }] }),
+                    onApprove: (d, a) => a.order.capture().then(() => openLicense(tier))
+                }).render(target);
+            }
+        }
 
-    <div class="song-card">
-        <h2>TRACK_5</h2>
-        <audio controls controlsList="nodownload"><source src="song5.wav" type="audio/wav"></audio>
-        <div class="pay-module"><span class="price-label">COMMERCIAL LICENSE ($20)</span><div id="p5c"></div></div>
-        <div class="pay-module"><span class="price-label">EXCLUSIVE OWNERSHIP ($50)</span><div id="p5e"></div></div>
-    </div>
-
-    <div class="song-card">
-        <h2>TRACK_6</h2>
-        <audio controls controlsList="nodownload"><source src="song6.wav" type="audio/wav"></audio>
-        <div class="pay-module"><span class="price-label">COMMERCIAL LICENSE ($20)</span><div id="p6c"></div></div>
-        <div class="pay-module"><span class="price-label">EXCLUSIVE OWNERSHIP ($50)</span><div id="p6e"></div></div>
-    </div>
-
-    <div class="song-card">
-        <h2>TRACK_7</h2>
-        <audio controls controlsList="nodownload"><source src="song7.wav" type="audio/wav"></audio>
-        <div class="pay-module"><span class="price-label">COMMERCIAL LICENSE ($20)</span><div id="p7c"></div></div>
-        <div class="pay-module"><span class="price-label">EXCLUSIVE OWNERSHIP ($50)</span><div id="p7e"></div></div>
-    </div>
-
-    <div class="song-card">
-        <h2>TRACK_8</h2>
-        <audio controls controlsList="nodownload"><source src="song8.wav" type="audio/wav"></audio>
-        <div class="pay-module"><span class="price-label">COMMERCIAL LICENSE ($20)</span><div id="p8c"></div></div>
-        <div class="pay-module"><span class="price-label">EXCLUSIVE OWNERSHIP ($50)</span><div id="p8e"></div></div>
-    </div>
-
-    <div class="song-card">
-        <h2>TRACK_9</h2>
-        <audio controls controlsList="nodownload"><source src="song9.wav" type="audio/wav"></audio>
-        <div class="pay-module">
+        window.onload = function() {
+            for(let i=1; i<=15; i++) {
+                renderBtn('#p' + i + 'c', '20.00', 'C');
+                renderBtn('#p' + i + 'e', '50.00', 'E');
+            }
+        };
+    </script>
+</body>
+</html>
