@@ -1,132 +1,79 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LO-FI SUPPLY // OFFICIAL</title>
+    <title>LO-FI SUPPLY // OFFICIAL_VAULT</title>
     <script src="https://www.paypal.com/sdk/js?client-id=AQnmb8EvyKXnVd1zAyJOQFBs9mULlocD7oL176NoeTNHBETpTR4x3vL9ldSgaLlewn31Xm_fZJRKJIQM&currency=USD"></script>
     <style>
-        /* Chromatic Spectrum Animation */
         @keyframes spectrum {
             0% { color: #0f0; border-color: #0f0; text-shadow: 0 0 10px #0f0; }
             33% { color: #0ff; border-color: #0ff; text-shadow: 0 0 10px #0ff; }
-            66% { color: #00f; border-color: #00f; text-shadow: 0 0 10px #00f; }
             100% { color: #f0f; border-color: #f0f; text-shadow: 0 0 10px #f0f; }
         }
-        @keyframes boxGlow {
-            0% { border-color: #0f0; box-shadow: 0 0 10px inset #0f0; }
-            100% { border-color: #f0f; box-shadow: 0 0 10px inset #f0f; }
-        }
-
-        body { 
-            background: #000; 
-            color: #0f0; 
-            font-family: 'Courier New', monospace; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            padding: 10px;
-            margin: 0;
-            user-select: none;
-        }
-
-        /* Smaller Header Fix */
-        h1 { 
-            font-size: clamp(1.2em, 5vw, 1.8em); 
-            animation: spectrum 4s infinite alternate; 
-            text-align: center;
-            margin: 15px 0;
-        }
-
-        .terminal { 
-            width: 100%; max-width: 800px; 
-            border: 2px solid; padding: 15px; 
-            text-align: center; margin-bottom: 20px;
-            animation: boxGlow 5s infinite alternate;
-        }
-
-        .song-group { width: 100%; max-width: 800px; border: 2px solid; padding: 15px; margin-bottom: 30px; animation: boxGlow 6s infinite alternate-reverse; }
-        
-        .song-card { 
-            background: #050505; border: 1px solid; margin-bottom: 20px; padding: 15px; 
-            display: flex; flex-direction: column; gap: 10px;
-            animation: boxGlow 4s infinite alternate;
-        }
-
-        .card-title { animation: spectrum 3s infinite alternate; font-weight: bold; }
-
-        audio { width: 100%; filter: invert(1) hue-rotate(180deg); }
-
-        .buy-box { border: 1px solid; padding: 10px; animation: boxGlow 3s infinite alternate; }
-        
-        .label { font-size: 0.7em; color: #fff; margin-bottom: 5px; display: block; }
-
-        /* Contract/License Overlay */
-        #license-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 999; padding: 20px; border: 3px solid; animation: boxGlow 2s infinite; }
-        .license-content { background: #111; color: #fff; padding: 15px; height: 60vh; overflow-y: auto; border: 1px solid #0ff; margin-bottom: 10px; font-size: 0.8em; white-space: pre-wrap; }
-        
-        .btn-sign { background: #0ff; color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; }
+        body { background: #000; color: #0f0; font-family: 'Courier New', monospace; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; user-select: none; }
+        h1 { font-size: 1.4em; animation: spectrum 4s infinite alternate; letter-spacing: 2px; text-align: center; }
+        .info { width: 100%; max-width: 700px; border: 2px solid; padding: 15px; text-align: center; margin-bottom: 30px; animation: spectrum 5s infinite; }
+        .card { width: 100%; max-width: 700px; background: #0a0a0a; border: 1px solid; padding: 20px; margin-bottom: 25px; animation: spectrum 6s infinite alternate; }
+        audio { width: 100%; filter: invert(1) hue-rotate(180deg); margin: 10px 0; }
+        .pp-box { border: 1px solid #333; padding: 10px; margin-top: 10px; }
+        .price { font-size: 0.8em; color: #fff; margin-bottom: 5px; display: block; }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
     <h1>>> LO-FI SUPPLY <<</h1>
 
-    <div class="terminal">
-        <p style="animation: spectrum 2s infinite;">✓ NO COPYRIGHT STRIKES GUARANTEED</p>
-        <p>100% ROYALTY-FREE BEATS // COMMERCIAL & EXCLUSIVE</p>
+    <div class="info">
+        <p>✓ NO COPYRIGHT STRIKES GUARANTEED</p>
+        <p>100% ROYALTY-FREE // COMMERCIAL & EXCLUSIVE</p>
     </div>
 
-    <div id="container" style="width: 100%; max-width: 800px;"></div>
-
-    <div id="license-overlay">
-        <h2 style="animation: spectrum 2s infinite;">DIGITAL_LICENSE_AGREEMENT</h2>
-        <div id="license-text" class="license-content"></div>
-        <input type="text" id="signer" placeholder="SIGN LEGAL NAME" style="width:100%; padding:10px; margin-bottom:10px; background:#000; color:#0f0; border:1px solid #0f0;">
-        <button class="btn-sign" onclick="document.getElementById('license-overlay').style.display='none'">SIGN & COMPLETE</button>
+    <div class="card">
+        <div>SONG 1</div>
+        <audio controls controlsList="nodownload"><source src="song1.wav" type="audio/wav"></audio>
+        <div class="pp-box">
+            <span class="price">COMMERCIAL - $20</span>
+            <div id="p1c"></div>
+        </div>
+        <div class="pp-box">
+            <span class="price">EXCLUSIVE - $50</span>
+            <div id="p1e"></div>
+        </div>
     </div>
 
-<script>
-    const tracks = ['song1.wav','song2.wav','song3.wav','song4.wav','song5.wav','song6.wav','song7.wav','song8.wav','song9.wav','song10.wav','song11.wav','song12.wav','song13.wav','song14.wav'];
-    const main = document.getElementById('container');
+    <div class="card">
+        <div>SONG 2</div>
+        <audio controls controlsList="nodownload"><source src="song2.wav" type="audio/wav"></audio>
+        <div class="pp-box">
+            <span class="price">COMMERCIAL - $20</span>
+            <div id="p2c"></div>
+        </div>
+        <div class="pp-box">
+            <span class="price">EXCLUSIVE - $50</span>
+            <div id="p2e"></div>
+        </div>
+    </div>
 
-    function openLicense(track, tier) {
-        const overlay = document.getElementById('license-overlay');
-        const text = document.getElementById('license-text');
-        overlay.style.display = 'block';
-        
-        const guarantee = "GUARANTEE: Lo-Fi Supply warrants this track is original. NO COPYRIGHT STRIKES GUARANTEED.\n\n";
-        text.innerText = tier === 'COMM' 
-            ? `${guarantee}COMMERCIAL LICENSE (ROYALTY-FREE): You keep 100% of earnings. 50k Stream Limit. Credit Required.`
-            : `${guarantee}EXCLUSIVE LICENSE (ROYALTY-FREE): Full Buyout. Unlimited Streams. Ownership transferred to you.`;
-    }
+    <script>
+        const renderPay = (id, amt, desc) => {
+            paypal.Buttons({
+                style: { height: 35, color: (amt === '20.00' ? 'black' : 'blue') },
+                createOrder: (data, actions) => actions.order.create({
+                    purchase_units: [{ description: desc, amount: { value: amt } }]
+                }),
+                onApprove: (data, actions) => actions.order.capture().then(() => {
+                    alert("THANK YOU. YOUR ROYALTY-FREE LICENSE IS NOW ACTIVE.");
+                })
+            }).render(id);
+        };
 
-    // Split and Render
-    const groups = [tracks.slice(0, 7), tracks.slice(7, 14)];
-    groups.forEach((group, gIdx) => {
-        const groupDiv = document.createElement('div');
-        groupDiv.className = 'song-group';
-        
-        group.forEach((file, sIdx) => {
-            const num = (gIdx * 7) + sIdx + 1;
-            const card = document.createElement('div');
-            card.className = 'song-card';
-            card.innerHTML = `
-                <div class="card-title">>> SONG_${num}</div>
-                <audio controls controlsList="nodownload"><source src="${file}" type="audio/wav"></audio>
-                <div class="buy-box">
-                    <span class="label">COMMERCIAL - $20 (ROYALTY FREE)</span>
-                    <div id="pay-c-${num}"></div>
-                </div>
-                <div class="buy-box">
-                    <span class="label">EXCLUSIVE - $50 (ROYALTY FREE)</span>
-                    <div id="pay-e-${num}"></div>
-                </div>
-            `;
-            groupDiv.appendChild(card);
-        });
-        main.appendChild(groupDiv);
-
-        // Render PayPal after elements are added
-        group.forEach((file, sIdx) => {
+        // Button Activation
+        renderPay('#p1c', '20.00', 'Song 1 Commercial');
+        renderPay('#p1e', '50.00', 'Song 1 Exclusive');
+        renderPay('#p2c', '20.00', 'Song 2 Commercial');
+        renderPay('#p2e', '50.00', 'Song 2 Exclusive');
+        // Add renders for p3c/e through p15c/e as you add the HTML blocks above
+    </script>
+</body>
+</html>
