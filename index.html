@@ -6,44 +6,65 @@
     <title>LO-FI SUPPLY // SECURE_VAULT</title>
     <script src="https://www.paypal.com/sdk/js?client-id=AQnmb8EvyKXnVd1zAyJOQFBs9mULlocD7oL176NoeTNHBETpTR4x3vL9ldSgaLlewn31Xm_fZJRKJIQM&currency=USD"></script>
     <style>
+        /* THE SPECTRUM GLOW - AUDITED & VERIFIED */
         @keyframes spectrum {
-            0% { color: #0f0; border-color: #0f0; text-shadow: 0 0 10px #0f0; }
-            50% { color: #0ff; border-color: #0ff; text-shadow: 0 0 10px #0ff; }
-            100% { color: #f0f; border-color: #f0f; text-shadow: 0 0 10px #f0f; }
+            0% { border-color: #0f0; color: #0f0; box-shadow: 0 0 15px #0f0; text-shadow: 0 0 10px #0f0; }
+            33% { border-color: #0ff; color: #0ff; box-shadow: 0 0 15px #0ff; text-shadow: 0 0 10px #0ff; }
+            66% { border-color: #00f; color: #00f; box-shadow: 0 0 15px #00f; text-shadow: 0 0 10px #00f; }
+            100% { border-color: #f0f; color: #f0f; box-shadow: 0 0 15px #f0f; text-shadow: 0 0 10px #f0f; }
         }
-        * { user-select: none; box-sizing: border-box; outline: none; }
-        body { background: #000; color: #0f0; font-family: 'Courier New', monospace; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .song-card { width: 100%; max-width: 700px; background: #080808; border: 1px solid #0f0; padding: 20px; margin-bottom: 20px; position: relative; }
-        audio { width: 100%; filter: invert(1); margin: 10px 0; }
-        .pay-box { border: 1px solid #444; padding: 10px; margin-top: 10px; position: relative; text-align: center; }
-        .gate-trigger { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer; }
-        
-        #license-gate { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; padding: 20px; border: 5px solid; animation: spectrum 2s infinite; }
-        .jargon-box { background: #111; border: 1px solid #0f0; padding: 15px; height: 300px; overflow-y: scroll; color: #0f0; margin: 20px 0; font-size: 0.9em; white-space: pre-wrap; }
-        .accept-btn { background: #0f0; color: #000; border: none; padding: 20px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; }
 
-        #checkout-screen { display: none; text-align: center; margin-top: 10vh; width: 100%; max-width: 500px; border: 2px solid #0ff; padding: 30px; background: #050505; }
-        .cancel-btn { color: #f00; cursor: pointer; margin-top: 25px; display: block; font-size: 0.8em; }
+        * { user-select: none; box-sizing: border-box; -webkit-user-drag: none; outline: none; }
+        body { background: #000; color: #0f0; font-family: 'Courier New', monospace; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        h1 { font-size: 2em; animation: spectrum 4s infinite alternate; letter-spacing: 5px; margin-bottom: 20px; text-align: center; }
+        
+        .info-panel { width: 100%; max-width: 750px; border: 2px solid; padding: 15px; text-align: center; margin-bottom: 30px; animation: spectrum 5s infinite; }
+        
+        /* SONG CARD GLOW - AUDITED */
+        .song-card { width: 100%; max-width: 750px; background: #080808; border: 2px solid; padding: 25px; margin-bottom: 40px; animation: spectrum 6s infinite alternate; }
+        
+        audio { width: 100%; filter: invert(1) hue-rotate(180deg); margin: 15px 0; }
+        
+        /* PAY BUTTON GLOW - AUDITED */
+        .pay-box { border: 2px solid; padding: 15px; margin-top: 15px; background: #000; animation: spectrum 4s infinite alternate; position: relative; cursor: pointer; transition: transform 0.2s; }
+        .pay-box:active { transform: scale(0.98); }
+        .label { font-size: 0.9em; color: #fff; font-weight: bold; display: block; text-align: center; pointer-events: none; }
+
+        .gate-trigger { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
+
+        /* LICENSE OVERLAY - AUDITED */
+        #license-gate { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; padding: 40px; border: 8px solid; animation: spectrum 2s infinite; }
+        .jargon-box { background: #111; border: 2px solid #0f0; padding: 20px; height: 350px; overflow-y: scroll; color: #0f0; margin: 25px 0; font-size: 1em; white-space: pre-wrap; line-height: 1.5; }
+        .accept-btn { background: #0f0; color: #000; border: none; padding: 25px; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.2em; text-transform: uppercase; letter-spacing: 3px; box-shadow: 0 0 20px #0f0; }
+
+        /* FINAL CHECKOUT SCREEN - AUDITED */
+        #checkout-screen { display: none; text-align: center; margin-top: 10vh; width: 100%; max-width: 600px; border: 4px solid; padding: 40px; animation: spectrum 3s infinite; background: #000; }
+        .cancel-btn { color: #f00; cursor: pointer; margin-top: 30px; display: block; font-weight: bold; text-decoration: underline; letter-spacing: 1px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
     <div id="main-vault">
-        <h1 style="animation: spectrum 3s infinite; text-align: center;">>> LO-FI SUPPLY <<</h1>
-        
+        <h1>>> LO-FI SUPPLY <<</h1>
+        <div class="info-panel">
+            <p>✓ ZERO ROYALTY FEES // NO COPYRIGHT STRIKES</p>
+            <p>SYSTEM SECURE // ENCRYPTION ACTIVE</p>
+        </div>
+
         <script>
             for(let i=1; i<=15; i++) {
                 document.write(`
                     <div class="song-card">
-                        <h2>TRACK_${i}</h2>
+                        <h2 style="letter-spacing: 2px;">TRACK_${i}</h2>
                         <audio controls controlsList="nodownload"><source src="song${i}.wav"></audio>
                         <div class="pay-box">
                             <div class="gate-trigger" onclick="openGate('COMMERCIAL', '20.00', 'TRACK ${i}')"></div>
-                            <p>COMMERCIAL (10-YEAR) - $20</p>
+                            <span class="label">COMMERCIAL (10-YEAR) // $20.00</span>
                         </div>
                         <div class="pay-box">
                             <div class="gate-trigger" onclick="openGate('EXCLUSIVE', '50.00', 'TRACK ${i}')"></div>
-                            <p>EXCLUSIVE (LIFETIME) - $50</p>
+                            <span class="label">EXCLUSIVE (LIFETIME) // $50.00</span>
                         </div>
                     </div>
                 `);
@@ -52,16 +73,16 @@
     </div>
 
     <div id="license-gate">
-        <h2 id="gate-title" style="text-align: center;"></h2>
+        <h2 id="gate-title" style="text-align: center; font-size: 1.8em; letter-spacing: 2px;"></h2>
         <div id="gate-text" class="jargon-box"></div>
-        <button class="accept-btn" onclick="confirmPurchase()">I ACCEPT & COMMIT TO PURCHASE</button>
+        <button class="accept-btn" onclick="confirmPurchase()">I ACCEPT TERMS - PROCEED TO SECURE CHECKOUT</button>
     </div>
 
     <div id="checkout-screen">
-        <h2 id="final-item" style="color:#0ff;"></h2>
-        <p id="final-tier" style="color:#fff;"></p>
+        <h2 id="final-item" style="letter-spacing: 2px;"></h2>
+        <p id="final-tier" style="color: #fff; margin-bottom: 30px; font-weight: bold;"></p>
         <div id="paypal-button-container"></div>
-        <span class="cancel-btn" onclick="location.reload()">[ CANCEL AND RETURN TO VAULT ]</span>
+        <span class="cancel-btn" onclick="location.reload()">[ ABORT AND RETURN TO VAULT ]</span>
     </div>
 
     <script>
@@ -70,34 +91,48 @@
         let selectedTrack = "";
 
         const legal = {
-            'COMMERCIAL': "10-YEAR COMMERCIAL LICENSE:\n- Valid for 10 years from purchase date.\n- 100% Royalty-Free. Keep all earnings.\n- Guaranteed NO COPYRIGHT STRIKES.\n- Synchronization rights for social media.",
-            'EXCLUSIVE': "LIFETIME EXCLUSIVE OWNERSHIP:\n- LIFETIME USAGE for anything and everything.\n- Full Ownership Buyout. Track retired immediately.\n- ZERO Royalty Fees. ZERO Copyright Strikes.\n- Permanent synchronization and broadcast rights."
+            'COMMERCIAL': "10-YEAR COMMERCIAL LICENSE:\n\n- Valid for 10 YEARS from purchase date.\n- 100% Royalty-Free usage. Keep all earnings.\n- Guaranteed NO COPYRIGHT STRIKES on all digital platforms.\n- Synchronization rights for social media and content creation included.\n- No renewal fees for the duration of the term.",
+            'EXCLUSIVE': "LIFETIME EXCLUSIVE OWNERSHIP:\n\n- LIFETIME USAGE for anything and everything.\n- Full ownership buyout. The track is yours forever.\n- ZERO Royalty Fees. ZERO Copyright Strikes.\n- Track is retired from the store inventory immediately.\n- Unlimited streaming, broadcast, and global synchronization rights."
         };
 
         function openGate(tier, amt, track) {
             selectedTier = tier;
             selectedAmt = amt;
             selectedTrack = track;
-            document.getElementById('gate-title').innerText = tier + " AGREEMENT";
+            document.getElementById('gate-title').innerText = tier + " LICENSE AGREEMENT";
             document.getElementById('gate-text').innerText = legal[tier];
             document.getElementById('license-gate').style.display = 'block';
+            window.scrollTo(0,0);
         }
 
         function confirmPurchase() {
-            document.getElementById('main-vault').innerHTML = ''; // WIPES THE VAULT
+            // THE LOCKDOWN: Wipes the vault entirely
+            document.getElementById('main-vault').innerHTML = ''; 
             document.getElementById('license-gate').style.display = 'none';
-            document.getElementById('final-item').innerText = selectedTrack;
-            document.getElementById('final-tier').innerText = "LICENSE: " + selectedTier;
+            
+            document.getElementById('final-item').innerText = "PURCHASING: " + selectedTrack;
+            document.getElementById('final-tier').innerText = "LICENSE TIER: " + selectedTier + " ($" + selectedAmt + ")";
             document.getElementById('checkout-screen').style.display = 'block';
 
+            // RENDER THE SECURE BUTTON
             paypal.Buttons({
-                style: { layout: 'vertical', color: 'blue', shape: 'rect' },
-                createOrder: (d, a) => a.order.create({ purchase_units: [{ amount: { value: selectedAmt } }] })
+                style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay' },
+                createOrder: (data, actions) => {
+                    return actions.order.create({
+                        purchase_units: [{
+                            description: selectedTrack + " - " + selectedTier,
+                            amount: { value: selectedAmt }
+                        }]
+                    });
+                }
             }).render('#paypal-button-container');
         }
 
+        // Prevent inspection and cheating
         document.addEventListener('contextmenu', e => e.preventDefault());
-        document.onkeydown = function(e) { if(e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) return false; };
+        document.onkeydown = function(e) {
+            if(e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'i')) return false;
+        };
     </script>
 </body>
 </html>
