@@ -3,80 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRACK_DISTRIBUTION_TERMINAL_v5.0</title>
+    <title>SECURE_TRACK_INTERFACE</title>
     <style>
         :root {
             --neon: #00ff41;
-            --exclusive: #00d4ff; /* Cyan accent for exclusive tracks */
-            --bg: #050505;
+            --bg: #0a0a0a;
             --font: 'Courier New', Courier, monospace;
         }
 
-        body { background: var(--bg); color: var(--neon); font-family: var(--font); padding: 20px; }
-        .container { max-width: 900px; margin: 0 auto; border: 1px solid var(--neon); padding: 30px; box-shadow: 0 0 15px rgba(0, 255, 65, 0.1); }
-        
-        .header-main { border-bottom: 1px solid var(--neon); margin-bottom: 25px; padding-bottom: 10px; }
-
-        /* Selection Interface */
-        .tier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
-        .tier-option {
-            border: 1px solid #333; padding: 20px; cursor: pointer; text-align: center;
-            transition: 0.3s; background: rgba(255,255,255,0.02);
-        }
-        .tier-option.selected { border-color: var(--neon); background: rgba(0, 255, 65, 0.05); }
-        .tier-option.exclusive-mode.selected { border-color: var(--exclusive); color: var(--exclusive); }
-
-        /* BandLab-Style Scrollbox */
-        #license-scroll-area {
-            height: 280px; overflow-y: scroll; background: #000;
-            padding: 20px; border: 1px solid #222; margin-bottom: 20px;
-            color: #aaa; font-size: 0.85rem; line-height: 1.6;
+        body {
+            background-color: var(--bg);
+            color: var(--neon);
+            font-family: var(--font);
+            padding: 20px;
+            line-height: 1.5;
         }
 
-        .auth-bar { 
-            background: #111; padding: 15px; border: 1px solid #333; 
-            display: flex; align-items: center; margin-bottom: 20px;
+        .terminal-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid var(--neon);
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
         }
-        input[type="checkbox"] { width: 20px; height: 20px; margin-right: 15px; cursor: not-allowed; }
-        
-        #payment-terminal { display: none; text-align: center; padding: 25px; border: 1px dashed var(--neon); }
-        .status-text { font-size: 0.7rem; letter-spacing: 1px; margin-top: 10px; color: #666; }
 
-        ::-webkit-scrollbar { width: 6px; }
+        header {
+            border-bottom: 1px solid var(--neon);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        /* BandLab-Style Scroll Box */
+        #license-box {
+            height: 300px;
+            overflow-y: scroll;
+            background: #000;
+            padding: 20px;
+            border: 1px solid #222;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        #license-box h3 { color: var(--neon); }
+
+        .agreement-row {
+            display: flex;
+            align-items: center;
+            background: #111;
+            padding: 15px;
+            border: 1px solid #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            cursor: not-allowed;
+        }
+
+        #payment-section {
+            display: none; /* Hidden until scroll-agreement is met */
+            text-align: center;
+            border-top: 1px dashed var(--neon);
+            padding-top: 20px;
+        }
+
+        .btn-upload {
+            background: transparent;
+            color: var(--neon);
+            border: 1px solid var(--neon);
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: var(--neon); }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header-main">
-        <h1>> TRACK_LICENSING_GATEWAY</h1>
-        <p>IDENTIFIER: AUDIO_ASSET_REQUISITION</p>
+<div class="terminal-container">
+    <header>
+        <h1>> TRACK_AUTHORIZATION_TERMINAL</h1>
+        <p>STATUS: READY_FOR_SIGNATURE</p>
+    </header>
+
+    <div id="license-box">
+        <h3>EXCLUSIVE TRACK LICENSE AGREEMENT</h3>
+        <p><strong>1. THE ASSET:</strong> This agreement pertains to the audio recording (the "Track") selected for purchase.</p>
+        <p><strong>2. EXCLUSIVE RIGHTS:</strong> Upon successful transaction, the Licensor transfers all exclusive rights to the Licensee. The Licensor shall no longer offer this Track for sale or license to any other party.</p>
+        <p><strong>3. MASTER OWNERSHIP:</strong> Licensee is granted full ownership of the Master Recording for use in any commercial or personal project worldwide, in perpetuity.</p>
+        <p><strong>4. WARRANTIES:</strong> Licensor warrants that the Track is original and does not infringe upon any third-party intellectual property rights.</p>
+        <p><strong>5. TERMINATION:</strong> This transfer of rights is contingent upon the successful completion of payment via the encrypted gateway below.</p>
+        <p>--------------------------------------------------</p>
+        <p><em>(SCROLL TO BOTTOM TO ENABLE DIGITAL SIGNATURE)</em></p>
+        <p>Verification Token: AUTH-88291-X</p>
+        <p>[END OF DOCUMENT]</p>
     </div>
 
-    <div class="tier-grid">
-        <div id="btn-non" class="tier-option selected" onclick="updateMode('non-exclusive')">
-            <h3>NON-EXCLUSIVE</h3>
-            <p>USAGE LICENSE: $29.99</p>
-        </div>
-        <div id="btn-exc" class="tier-option exclusive-mode" onclick="updateMode('exclusive')">
-            <h3>EXCLUSIVE</h3>
-            <p>FULL BUYOUT: $499.99</p>
-        </div>
+    <div class="agreement-row">
+        <input type="checkbox" id="agreeCheckbox" disabled onchange="toggleGate()">
+        <label for="agreeCheckbox" id="labelMsg">SCROLL TO READ AGREEMENT</label>
     </div>
 
-    <div id="license-scroll-area">
-        </div>
-
-    <div class="auth-bar" id="checkWrapper">
-        <input type="checkbox" id="signatureBox" disabled onchange="handleSignature()">
-        <label id="signatureLabel">READ FULL AGREEMENT TO UNLOCK SIGNATURE</label>
-    </div>
-
-    <div id="payment-terminal">
-        <h2 id="price-tag">PAYMENT_DUE: $29.99</h2>
+    <div id="payment-section">
+        <h2>SECURE_PAYMENT_GATEWAY</h2>
         <div id="paypal-button-container"></div>
-        <p class="status-text">SECURE SSL CONNECTION ESTABLISHED</p>
     </div>
 </div>
 
@@ -84,86 +118,49 @@
 <script>
     "use strict";
 
-    let activeTier = 'non-exclusive';
-    let activePrice = '29.99';
+    const scrollBox = document.getElementById('license-box');
+    const checkbox = document.getElementById('agreeCheckbox');
+    const label = document.getElementById('labelMsg');
+    const gate = document.getElementById('payment-section');
 
-    const legalDocs = {
-        'non-exclusive': `
-            <h3>NON-EXCLUSIVE TRACK LICENSE</h3>
-            <p><strong>1. LICENSE GRANT:</strong> The Licensor grants the Licensee a non-exclusive license to use the Track for one (1) commercial recording or broadcast.</p>
-            <p><strong>2. LIMITATIONS:</strong> Ownership of the Track remains with the Licensor. Licensee is permitted up to 500,000 streams across digital platforms.</p>
-            <p><strong>3. CREDIT:</strong> Licensee must credit the Producer in the metadata of the new work.</p>
-            <p><strong>4. NON-TRANSFERABILITY:</strong> This license cannot be sold or transferred to third parties.</p>
-            ${"<p>[PROTOCOL DATA SCROLL FILLER]</p>".repeat(10)}
-            <p>--- END OF NON-EXCLUSIVE TERMS ---</p>
-        `,
-        'exclusive': `
-            <h3>EXCLUSIVE TRACK PURCHASE & MASTER TRANSFER</h3>
-            <p><strong>1. EXCLUSIVE BUYOUT:</strong> The Licensor hereby sells and assigns all rights, title, and interest in the Track to the Licensee.</p>
-            <p><strong>2. TERMINATION OF SALES:</strong> Upon execution of this agreement, the Licensor shall immediately cease all further licensing of this Track.</p>
-            <p><strong>3. UNLIMITED USAGE:</strong> Licensee is granted unlimited streaming, performance, and synchronization rights globally in perpetuity.</p>
-            <p><strong>4. INDEMNITY:</strong> Licensor warrants the Track is an original work and does not infringe on third-party copyrights.</p>
-            ${"<p>[EXCLUSIVE TRANSFER DATA SCROLL FILLER]</p>".repeat(10)}
-            <p>--- END OF EXCLUSIVE TERMS ---</p>
-        `
-    };
-
-    function updateMode(tier) {
-        activeTier = tier;
-        activePrice = (tier === 'exclusive') ? '499.99' : '29.99';
-        
-        // UI Updates
-        document.getElementById('btn-non').classList.toggle('selected', tier === 'non-exclusive');
-        document.getElementById('btn-exc').classList.toggle('selected', tier === 'exclusive');
-        document.getElementById('price-tag').innerText = `PAYMENT_DUE: $${activePrice}`;
-        
-        // Reset Contract State
-        const scrollBox = document.getElementById('license-scroll-area');
-        scrollBox.innerHTML = legalDocs[tier];
-        scrollBox.scrollTop = 0;
-        
-        const sigBox = document.getElementById('signatureBox');
-        sigBox.disabled = true;
-        sigBox.checked = false;
-        document.getElementById('signatureLabel').innerText = "READ FULL AGREEMENT TO UNLOCK SIGNATURE";
-        document.getElementById('payment-terminal').style.display = 'none';
-    }
-
-    // Initialize default view
-    updateMode('non-exclusive');
-
-    // BandLab-Style Scroll Requirement
-    document.getElementById('license-scroll-area').onscroll = function() {
-        if (this.scrollHeight - this.scrollTop <= this.clientHeight + 5) {
-            document.getElementById('signatureBox').disabled = false;
-            document.getElementById('signatureLabel').innerText = "I ELECTRONICALLY SIGN THIS " + activeTier.toUpperCase() + " CONTRACT";
+    // Restoration of the BandLab "Scroll-to-Unlock" Protocol
+    scrollBox.onscroll = function() {
+        if (scrollBox.scrollHeight - scrollBox.scrollTop <= scrollBox.clientHeight + 2) {
+            checkbox.disabled = false;
+            checkbox.style.cursor = "pointer";
+            label.innerText = "I AGREE TO THE EXCLUSIVE TRACK TERMS";
+            label.style.color = "#00ff41";
         }
     };
 
-    function handleSignature() {
-        const isSigned = document.getElementById('signatureBox').checked;
-        document.getElementById('payment-terminal').style.display = isSigned ? 'block' : 'none';
-        if (isSigned) renderPaypal();
+    function toggleGate() {
+        if (checkbox.checked) {
+            gate.style.display = "block";
+            renderPaypal();
+        } else {
+            gate.style.display = "none";
+        }
     }
 
     function renderPaypal() {
-        document.getElementById('paypal-button-container').innerHTML = ''; // Clear previous
+        document.getElementById('paypal-button-container').innerHTML = '';
         paypal.Buttons({
-            createOrder: (data, actions) => {
+            createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
-                        amount: { value: activePrice },
-                        description: `Track License: ${activeTier}`
+                        amount: { value: '499.00' },
+                        description: 'Exclusive Track Master License'
                     }]
                 });
             },
-            onApprove: (data, actions) => {
-                return actions.order.capture().then(details => {
-                    alert('TRANSACTION SUCCESSFUL. PREPARING MASTER TRACK FOR DOWNLOAD...');
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('CONTRACT SIGNED. TRANSACTION COMPLETE.');
                 });
             }
         }).render('#paypal-button-container');
     }
 </script>
+
 </body>
 </html>
